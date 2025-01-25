@@ -1,0 +1,11 @@
+pandas
+openai
+psycopg
+python-dotenv
+timescale-vector
+instructor
+anthropic
+sympy
+transformers
+reportlab
+fastapi uvicorn python-multipart PyPDF2

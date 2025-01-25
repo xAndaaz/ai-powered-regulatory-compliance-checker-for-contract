@@ -1,0 +1,1 @@
+from langfuse.decorators import observe

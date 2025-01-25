@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fern-api/fern/main/fern.schema.json
+imports:
+  commons: ./commons.yml
+service:
+  auth: true
+  base-path: /api/public
+  endpoints:
+    create:
+      method: POST
+      docs: Create a dataset run item
+      path: /dataset-run-items
+      request: CreateDatasetRunItemRequest
+      response: commons.DatasetRunItem
+types:
+  CreateDatasetRunItemRequest:
+    properties:
+      runName: string
+      runDescription:
+        type: optional<string>
+        docs: Description of the run. If run exists, description will be updated.
+      metadata:
+        type: optional<unknown>
+        docs: Metadata of the dataset run, updates run if run already exists
+      datasetItemId: string
+      observationId: optional<string>
+      traceId:
+        type: optional<string>
+        docs: traceId should always be provided. For compatibility with older SDK versions it can also be inferred from the provided observationId.
