@@ -77,58 +77,96 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
+from reportlab.lib import colors
 
-# The string to be printed to the PDF (use actual `response.answer` here)
-response_answer = response.answer # Example response for testing
+def clean_text(text: str) -> str:
+    """
+    Cleans the text by removing unwanted characters like ** and -.
+    """
+    text = text.replace("**", "").replace("- ", "• ")  # Replace - with bullet points
+    return text
 
-# Function to convert the string into styled paragraphs
-def convert_to_paragraphs(text):
+def convert_to_paragraphs(text: str):
+    """
+    Converts the cleaned text into a list of formatted Paragraph objects for PDF generation.
+    """
+    # Clean the text
+    cleaned_text = clean_text(text)
+
+    # Create a stylesheet and define custom styles
     styles = getSampleStyleSheet()
 
-    # Custom styles for beautification
-    title_style = ParagraphStyle(
-        'Title',
-        parent=styles['Normal'],
-        fontSize=18,
-        fontName='Helvetica-Bold',
-        alignment=1,  # Centered
-        spaceAfter=20
-    )
-    section_header_style = ParagraphStyle(
-        'SectionHeader',
-        parent=styles['Normal'],
-        fontSize=14,
-        fontName='Helvetica-Bold',
-        spaceBefore=10,
-        spaceAfter=10
-    )
-    normal_style = ParagraphStyle(
-        'Normal',
-        parent=styles['Normal'],
-        fontSize=12,
-        leading=15,
-        spaceAfter=10
-    )
+    # Check if the style already exists before adding it
+    if "Title" not in styles:
+        styles.add(ParagraphStyle(
+            name="Title",
+            fontSize=18,
+            fontName="Helvetica-Bold",
+            alignment=1,  # Centered
+            spaceAfter=20,
+        ))
+    if "SectionHeader" not in styles:
+        styles.add(ParagraphStyle(
+            name="SectionHeader",
+            fontSize=14,
+            fontName="Helvetica-Bold",
+            spaceBefore=10,
+            spaceAfter=10,
+        ))
+    if "BodyText" not in styles:
+        styles.add(ParagraphStyle(
+            name="BodyText",
+            fontSize=12,
+            leading=15,
+            fontName="Helvetica",
+            spaceAfter=10,
+        ))
+    if "BulletText" not in styles:
+        styles.add(ParagraphStyle(
+            name="BulletText",
+            fontSize=12,
+            leading=15,
+            fontName="Helvetica",
+            spaceAfter=6,
+            leftIndent=10,
+            bulletIndent=0,
+            bulletFontName="Helvetica",
+            bulletFontSize=12,
+        ))
 
+    # Split the text into sections based on headings
+    sections = cleaned_text.split("\n\n")
     paragraphs = []
 
     # Add a title
-    paragraphs.append(Paragraph("Compliance Analysis Report", title_style))
+    paragraphs.append(Paragraph("Compliance Analysis Report", styles["Title"]))
+    paragraphs.append(Spacer(1, 0.25 * inch))
 
-    # Process each line
-    lines = text.split('\n')
-    for line in lines:
-        if line.startswith('### '):
-            paragraphs.append(Paragraph(line[4:], section_header_style))
-        elif line.startswith('- '):
-            paragraphs.append(Paragraph(line, normal_style))
+    for section in sections:
+        if section.strip().startswith("Compliance Report:"):
+            paragraphs.append(Paragraph("Compliance Report", styles["SectionHeader"]))
+            paragraphs.append(Paragraph(section.strip().split("Compliance Report:")[1].strip(), styles["BodyText"]))
+        elif section.strip().startswith("Strengths:"):
+            paragraphs.append(Paragraph("Strengths", styles["SectionHeader"]))
+            for line in section.strip().split("\n")[1:]:
+                paragraphs.append(Paragraph(line.strip(), styles["BulletText"]))
+        elif section.strip().startswith("Areas for Improvement:"):
+            paragraphs.append(Paragraph("Areas for Improvement", styles["SectionHeader"]))
+            for line in section.strip().split("\n")[1:]:
+                paragraphs.append(Paragraph(line.strip(), styles["BulletText"]))
+        elif section.strip().startswith("Reasoning:"):
+            paragraphs.append(Paragraph("Reasoning", styles["SectionHeader"]))
+            paragraphs.append(Paragraph(section.strip().split("Reasoning:")[1].strip(), styles["BodyText"]))
         else:
-            paragraphs.append(Paragraph(line, normal_style))
+            paragraphs.append(Paragraph(section.strip(), styles["BodyText"]))
 
-        # Add a spacer between elements
+        # Add a spacer between sections
         paragraphs.append(Spacer(1, 0.15 * inch))
 
     return paragraphs
+
+# Example response for testing
+response_answer = response.answer
 
 # Create a beautified PDF
 pdf_filename = "suitability_report.pdf"
@@ -148,8 +186,6 @@ paragraphs = convert_to_paragraphs(response_answer)
 doc.build(paragraphs)
 
 print(f"Beautified PDF generated: {pdf_filename}")
-
-
 
 
 

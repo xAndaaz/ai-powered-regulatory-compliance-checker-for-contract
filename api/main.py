@@ -7,6 +7,7 @@ from PyPDF2 import PdfReader
 from app.database.vector_store import VectorStore  # Updated import path
 from app.services.synthesizer import Synthesizer  # Import the Synthesizer class
 from typing import List
+from app.similarity_search import convert_to_paragraphs
 
 app = FastAPI()
 
@@ -53,12 +54,11 @@ async def analyze_contracts(pdf_files: List[UploadFile] = File(...)):
 
             # Step 4: Generate PDF report
             pdf_filename = os.path.join(output_dir, f"{pdf_file.filename}_suitability_report.pdf")
-            from app.similarity_search import convert_to_paragraphs  # Import the PDF generation function
             from reportlab.lib.pagesizes import letter
             from reportlab.platypus import SimpleDocTemplate
 
             doc = SimpleDocTemplate(pdf_filename, pagesize=letter)
-            paragraphs = convert_to_paragraphs(response.answer)
+            paragraphs = convert_to_paragraphs(response.answer)  # Use the updated function
             doc.build(paragraphs)
 
             if not os.path.exists(pdf_filename):
@@ -72,7 +72,7 @@ async def analyze_contracts(pdf_files: List[UploadFile] = File(...)):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
-
+        
 @app.get("/download-report/")
 async def download_report(pdf_path: str):
     """
