@@ -36,43 +36,22 @@ By:   /s/ Albert A. Pimentel     By:   /s/ Jamie Samson
 
 Source: GLU MOBILE INC, S-1/A, 3/19/2007"""
 results = vec.search(relevant_question, limit=3)
-#print(results.columns) 
-#Synthesizer.dataframe_to_json(results)
 
 response = Synthesizer.generate_response(question=relevant_question, context=results)
 
+#--------------------------------------------------
+#     uncomment this and other part at the end for testing by 
+#     running similarity_search.py only
+#--------------------------------------------------
 
-print(f"\n{response.answer}")
-print("\nThought process:")
-for thought in response.thought_process:
-    print(f"- {thought}")
-print(f"\nContext: {response.enough_context}")
+# print(f"\n{response.answer}")
+# print("\nThought process:")
+# for thought in response.thought_process:
+#     print(f"- {thought}")
+# print(f"\nContext: {response.enough_context}")
 
 
-# from reportlab.lib.pagesizes import letter
-# from reportlab.pdfgen import canvas
 
-# # Replace this with your actual response.answer text
-# response_answer = response.answer
-
-# # Specify the output PDF file name
-# output_pdf = "response_answer.pdf"
-
-# # Create a canvas for the PDF
-# pdf = canvas.Canvas(output_pdf, pagesize=letter)
-# width, height = letter
-
-# # Add the text to the PDF
-# text_object = pdf.beginText(40, height - 40)  # Start 40 units from the top-left margin
-# text_object.setFont("Times-Roman", 12)       # Set the font and size
-
-# # Split the text into lines to fit the page
-# lines = response_answer.split("\n")  # Split by line breaks
-# for line in lines:
-#     text_object.textLine(line)
-
-# pdf.drawText(text_object)
-# pdf.save()
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -168,24 +147,30 @@ def convert_to_paragraphs(text: str):
 # Example response for testing
 response_answer = response.answer
 
-# Create a beautified PDF
-pdf_filename = "suitability_report.pdf"
-doc = SimpleDocTemplate(
-    pdf_filename,
-    pagesize=letter,
-    rightMargin=0.75 * inch,
-    leftMargin=0.75 * inch,
-    topMargin=1 * inch,
-    bottomMargin=0.75 * inch,
-)
+#----------------------------------------------------
+#                       uncomment
+#----------------------------------------------------
+
+# # Create a beautified PDF
+# pdf_filename = "suitability_report.pdf"
+# doc = SimpleDocTemplate(
+#     pdf_filename,
+#     pagesize=letter,
+#     rightMargin=0.75 * inch,
+#     leftMargin=0.75 * inch,
+#     topMargin=1 * inch,
+#     bottomMargin=0.75 * inch,
+# )
 
 # Convert the string into styled paragraphs
 paragraphs = convert_to_paragraphs(response_answer)
 
-# Build the beautified PDF
-doc.build(paragraphs)
+#-------------------------------------------------
+#  UNCOMMENT
+#  # Build the beautified PDF
+# doc.build(paragraphs)
 
-print(f"Beautified PDF generated: {pdf_filename}")
+# print(f"Beautified PDF generated: {pdf_filename}")
 
 
 
