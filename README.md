@@ -1,29 +1,10 @@
 
-## Pgvectorscale Documentation
-
-For more information about using PostgreSQL as a vector database in AI applications with Timescale, check out these resources:
-
-- [GitHub Repository: pgvectorscale](https://github.com/timescale/pgvectorscale)
-- [Blog Post: PostgreSQL and Pgvector: Now Faster Than Pinecone, 75% Cheaper, and 100% Open Source](https://www.timescale.com/blog/pgvector-is-now-as-fast-as-pinecone-at-75-less-cost/)
-- [Blog Post: RAG Is More Than Just Vector Search](https://www.timescale.com/blog/rag-is-more-than-just-vector-search/)
-- [Blog Post: A Python Library for Using PostgreSQL as a Vector Database in AI Applications](https://www.timescale.com/blog/a-python-library-for-using-postgresql-as-a-vector-database-in-ai-applications/)
-
-## Why PostgreSQL?
-
-Using PostgreSQL with pgvectorscale as your vector database offers several key advantages over dedicated vector databases:
-
-- PostgreSQL is a robust, open-source database with a rich ecosystem of tools, drivers, and connectors. This ensures transparency, community support, and continuous improvements.
-
-- By using PostgreSQL, you can manage both your relational and vector data within a single database. This reduces operational complexity, as there's no need to maintain and synchronize multiple databases.
-
-- Pgvectorscale enhances pgvector with faster search capabilities, higher recall, and efficient time-based filtering. It leverages advanced indexing techniques, such as the DiskANN-inspired index, to significantly speed up Approximate Nearest Neighbor (ANN) searches.
-
-Pgvectorscale Vector builds on top of [pgvector](https://github.com/pgvector/pgvector), offering improved performance and additional features, making PostgreSQL a powerful and versatile choice for AI applications.
+## AI powereed regulatory compliance checker for contracts
 
 ## Prerequisites
 
 - Docker
-- Python 3.7+
+- Python 3.12+
 - OpenAI API key
 - PostgreSQL GUI client
 
@@ -69,7 +50,7 @@ docker compose up -d
 - Open client
 - Create a new connection with the following details:
   - Host: localhost
-  - Port: 5432
+  - Port: 5433
   - User: postgres
   - Password: password
   - Database: postgres
@@ -88,48 +69,84 @@ See `similarity_search.py` for the implementation. This script also uses OpenAI'
 2. Open `.env` and fill in your OpenAI API key. Leave the database settings as is
 3. Run the Docker container
 4. Install the required Python packages using `pip install -r requirements.txt`
-5. Execute `insert_vectors.py` to populate the database
-6. Play with `similarity_search.py` to perform similarity searches
+5. Execute `insert_vectors.py` to populate the database with your dataset
+6. Play with `similarity_search.py` to perform similarity searches or use app/main.py
 
-## Using ANN search indexes to speed up queries
 
-Timescale Vector offers indexing options to accelerate similarity queries, particularly beneficial for large vector datasets (10k+ vectors):
+## Key Features
 
-1. Supported indexes:
-   - timescale_vector_index (default): A DiskANN-inspired graph index
-   - pgvector's HNSW: Hierarchical Navigable Small World graph index
-   - pgvector's IVFFLAT: Inverted file index
+- **AI-Driven Analysis**: Uses openAI to generate embeddings and perform similarity searches on stored contract data.
+- **Comprehensive Reporting**: Provides a compliance score out of 100, highlights strengths and weaknesses, and explains the evaluation process.
+- **Efficient Storage**: Stores embeddings, summaries, and metadata of 150+ contracts in Dockerized PostgreSQL for fast and reliable retrieval.
+- **User-Friendly Interface**: Built with Streamlit, offering an intuitive experience for uploading contracts (PDF) and viewing detailed reports.
+- **Cosine Similarity**: Utilized for similarity searches to compare uploaded contracts with existing data.
 
-2. The DiskANN-inspired index is Timescale's latest offering, providing improved performance. Refer to the [Timescale Vector explainer blog](https://www.timescale.com/blog/pgvector-is-now-as-fast-as-pinecone-at-75-less-cost/) for detailed information and benchmarks.
+## Technology Stack
 
-For optimal query performance, creating an index on the embedding column is recommended, especially for large vector datasets.
+- **Frontend**: FAST API keys
+- **Machine Learning**: openAI(3.5 turbo, 4o-mini) for embeddings and analysis
+- **Backend**: Dockerized PostgreSQL
+- **Similarity Search**: Cosine similarity algorithm
+- **Programming Language**: Python
 
-## Cosine Similarity in Vector Search
+## How It Works
 
-### What is Cosine Similarity?
+1. **Upload a Contract**: Users can upload contracts in PDF format.
+2. **AI Analysis**: Legiscan runs a similarity search on stored embeddings to analyze the uploaded contract.
+3. **Detailed Report**: The tool generates a report with:
+   - A compliance score out of 100
+   - Strengths and weaknesses of the contract
+   - An explanation of the analysis process
 
-Cosine similarity measures the cosine of the angle between two vectors in a multi-dimensional space. It's a measure of orientation rather than magnitude.
+## Installation
 
-- Range: -1 to 1 (for normalized vectors, which is typical in text embeddings)
-- 1: Vectors point in the same direction (most similar)
-- 0: Vectors are orthogonal (unrelated)
-- -1: Vectors point in opposite directions (most dissimilar)
+Follow these steps to set up compliance checker on your local machine:
 
-### Cosine Distance
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/legiscan.git
+   cd legiscan
+   ```
 
-In pgvector, the `<=>` operator computes cosine distance, which is 1 - cosine similarity.
+2. **Set Up the Environment**:
+   - Install Python dependencies:
+     ```bash
+     pip install -r requirements.txt
+     ```
 
-- Range: 0 to 2
-- 0: Identical vectors (most similar)
-- 1: Orthogonal vectors
-- 2: Opposite vectors (most dissimilar)
+3. **Run Docker**:
+   - Ensure Docker is installed and running on your machine.
+   - Start the PostgreSQL container:
+     ```bash
+     docker-compose up
+     ```
 
-### Interpreting Results
+4. **Start the Application**:
+   ```bash
+   uvicorn api.main:app --reload
+   ```
 
-When you get results from similarity_search:
+5. **Access the App**:
+   - Open your browser and go to `http://127.0.0.1:8000/docs`.
 
-- Lower distance values indicate higher similarity.
-- A distance of 0 would mean exact match (rarely happens with embeddings).
-- Distances closer to 0 indicate high similarity.
-- Distances around 1 suggest little to no similarity.
-- Distances approaching 2 indicate opposite meanings (rare in practice).
+## Usage
+
+- Upload a contract in PDF format.
+- Wait for the analysis to complete.
+- Download the detailed compliance report.
+
+## Contribution
+
+We welcome contributions! If you'd like to contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Commit your changes and submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Contact
+
+For any inquiries or feedback, please reach out at andaazmoun@gmail.com
