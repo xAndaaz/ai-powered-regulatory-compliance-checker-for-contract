@@ -1,5 +1,42 @@
+<h1 align="center">AI Powered Regulatory Compliance Platform</h1>
+<p align="center">Automated AI-powered legal contract analysis for regulatory adherence.</p>
 
-## AI powereed regulatory compliance checker for contracts
+<p align="center">
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge">
+</p>
+
+## 📖 Table of Contents
+- [⭐ Overview](#-overview)
+- [✨ Key Features](#-key-features)
+- [🛠️ Tech Stack & Architecture](#️-tech-stack--architecture)
+- [🚀 Getting Started](#-getting-started)
+- [🔧 Usage](#-usage)
+- [🤝 Contributing](#-contributing)
+- [📝 License](#-license)
+
+## ⭐ Overview
+
+AI Powered Regulatory Compliance Checker is an innovative open-source project designed to revolutionize regulatory compliance checking for legal contracts by leveraging advanced AI and semantic search capabilities.
+
+> **The Problem:** Manually reviewing legal contracts for regulatory compliance is a labor-intensive, time-consuming, and error-prone process. It demands extensive legal expertise and can lead to significant delays, increased operational costs, and potential non-compliance risks due to human oversight.
+
+**The Solution:** This project provides an elegant solution by automating the contract analysis workflow. It intelligently extracts relevant information, performs semantic comparisons against regulatory guidelines, and generates comprehensive "suitability reports" that highlight compliance or non-compliance areas, significantly reducing manual effort and enhancing accuracy.
+
+**Inferred Architecture:**
+This project is primarily a Python-based application, featuring a robust web API (built with FastAPI) for interaction. At its core, it integrates Large Language Models (LLMs) for intelligent text synthesis and analysis, complemented by a vector database (PostgreSQL with Timescale Vector) for efficient semantic search and retrieval-augmented generation (RAG). The application is containerized using Docker and Docker Compose for easy deployment and management. A critical component of its design is the deep integration with Langfuse, an open-source LLM observability platform, used for prompt management, tracing LLM interactions, and monitoring performance. The system is designed to ingest legal documents, process them, query relevant regulations, and generate detailed, human-readable compliance reports.
+
+## 🛠️ Tech Stack & Architecture
+
+| Technology                  | Purpose                                        | Why it was Chosen                                                                      |
+| :-------------------------- | :--------------------------------------------- | :------------------------------------------------------------------------------------- |
+| **Python**                  | Primary programming language                   | Versatility, rich ecosystem for AI/ML, and strong community support.                   |
+| **FastAPI**                 | Web API Framework                              | High performance, async support, automatic API documentation (Swagger UI/ReDoc).     |
+| **PostgreSQL + Timescale Vector** | Relational & Vector Database                   | Robust, scalable, excellent for structured data, and efficient similarity search with `pgvector` or `timescaledb-toolkit`. |
+| **Langfuse**                | LLM Observability & Prompt Management          | Comprehensive tracking, monitoring, and optimization of LLM applications.            |
+| **Pandas**                  | Data manipulation & analysis                   | Powerful and flexible for handling tabular data, essential for preprocessing and post-processing. |
+| **OpenAI, Hugging Face, Groq** | Large Language Models (LLMs)                   | Access to state-of-the-art generative AI capabilities for text understanding and synthesis. |
+| **Docker & Docker Compose** | Containerization & Orchestration               | Ensures consistent development and production environments, simplifies deployment.    |
+| **PDF Extraction Library**  | Extracts text from PDF documents (Inferred)    | Enables processing of unstructured text from legal documents.                          |
 
 ## Prerequisites
 
