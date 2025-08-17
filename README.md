@@ -8,7 +8,7 @@
 ## 📖 Table of Contents
 - [⭐ Overview](#-overview)
 - [🛠️ Tech Stack & Architecture](#️-tech-stack--architecture)
-- [🚀 Getting Started](#-steps)
+- [🚀 Getting Started](#steps)
 - [🔧 Usage](#-usage)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
