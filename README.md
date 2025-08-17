@@ -7,9 +7,8 @@
 
 ## 📖 Table of Contents
 - [⭐ Overview](#-overview)
-- [✨ Key Features](#-key-features)
 - [🛠️ Tech Stack & Architecture](#️-tech-stack--architecture)
-- [🚀 Getting Started](#-getting-started)
+- [🚀 Getting Started](#-steps)
 - [🔧 Usage](#-usage)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
