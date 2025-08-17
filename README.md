@@ -8,7 +8,8 @@
 ## 📖 Table of Contents
 - [⭐ Overview](#-overview)
 - [🛠️ Tech Stack & Architecture](#️-tech-stack--architecture)
-- [🚀 Getting Started](#steps)
+- [✨ Prerequisites](#-Prerequisites)
+- [🚀 Steps](#steps)
 - [🔧 Usage](#-usage)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
@@ -37,14 +38,14 @@ This project is primarily a Python-based application, featuring a robust web API
 | **Docker & Docker Compose** | Containerization & Orchestration               | Ensures consistent development and production environments, simplifies deployment.    |
 | **PDF Extraction Library**  | Extracts text from PDF documents (Inferred)    | Enables processing of unstructured text from legal documents.                          |
 
-## Prerequisites
+## ✨Prerequisites
 
 - Docker
 - Python 3.12+
 - OpenAI API key
 - PostgreSQL GUI client
 
-## Steps
+## 🚀Steps
 
 1. Set up Docker environment
 2. Connect to the database using a PostgreSQL GUI client (I use TablePlus)
@@ -99,7 +100,7 @@ See `insert_vectors.py` for the implementation. This script uses OpenAI's `text-
 
 See `similarity_search.py` for the implementation. This script also uses OpenAI's `text-embedding-3-small` model for query embedding.
 
-## Usage
+## 🔧Usage
 
 1. Create a copy of `example.env` and rename it to `.env`
 2. Open `.env` and fill in your OpenAI API key. Leave the database settings as is
