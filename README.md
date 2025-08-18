@@ -118,6 +118,14 @@ See `similarity_search.py` for the implementation. This script also uses OpenAI'
 - **User-Friendly Interface**: Built with Streamlit, offering an intuitive experience for uploading contracts (PDF) and viewing detailed reports.
 - **Cosine Similarity**: Utilized for similarity searches to compare uploaded contracts with existing data.
 
+-   **AI-Powered Contract Analysis:** Leverages sophisticated Large Language Models to deeply understand and analyze legal contract text against established regulatory frameworks.
+-   **Intelligent Document Processing (IDP):** Extracts text from various PDF documents, cleans it, and structures it into a machine-readable format optimized for subsequent AI analysis.
+-   **Semantic Search & Retrieval-Augmented Generation (RAG):** Utilizes a dedicated vector store (Timescale Vector) to perform highly accurate semantic searches, retrieving the most relevant regulatory context to inform LLM responses and compliance checks.
+-   **Comprehensive LLM Observability with Langfuse:** Integrates Langfuse for end-to-end tracing of LLM calls, detailed prompt management, performance monitoring, and robust evaluation capabilities, ensuring transparent and improvable AI operations.
+-   **Automated Suitability Report Generation:** Automatically produces detailed, actionable PDF reports outlining the compliance status of contracts, clearly identifying clauses and sections that require attention or indicate non-compliance.
+-   **Extensible LLM Provider Support:** Designed with an LLM factory pattern, allo
+-   **Regulatory Data Management:** Includes scripts and utilities (`for_exactlawwing seamless integration and switching between various leading LLM providers, including OpenAI, Hugging Face models, and Groq, based on performance or cost requirements..py`, `fords.py`) to prepare and manage legal and regulatory datasets for effective compliance checking.
+
 ## Technology Stack
 
 - **Frontend**: FAST API keys
