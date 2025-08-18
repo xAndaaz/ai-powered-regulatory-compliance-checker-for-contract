@@ -8,7 +8,7 @@
 ## 📖 Table of Contents
 - [⭐ Overview](#-overview)
 - [🛠️ Tech Stack & Architecture](#️-tech-stack--architecture)
-- [✨ Prerequisites](#-Prerequisites)
+- [✨ Prerequisites](#-prerequisites)
 - [🚀 Steps](#steps)
 - [🔧 Usage](#-usage)
 - [🤝 Contributing](#-contributing)
