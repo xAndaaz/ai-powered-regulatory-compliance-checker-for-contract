@@ -9,8 +9,9 @@
 - [⭐ Overview](#-overview)
 - [🛠️ Tech Stack & Architecture](#️-tech-stack--architecture)
 - [✨ Prerequisites](#-prerequisites)
-- [🚀 Steps](#steps)
+- [🚀 Steps](#-steps)
 - [🔧 Usage](#-usage)
+- [✨ Key Features](#-key-features)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
 
@@ -31,21 +32,21 @@ This project is primarily a Python-based application, featuring a robust web API
 | :-------------------------- | :--------------------------------------------- | :------------------------------------------------------------------------------------- |
 | **Python**                  | Primary programming language                   | Versatility, rich ecosystem for AI/ML, and strong community support.                   |
 | **FastAPI**                 | Web API Framework                              | High performance, async support, automatic API documentation (Swagger UI/ReDoc).     |
-| **PostgreSQL + Timescale Vector** | Relational & Vector Database                   | Robust, scalable, excellent for structured data, and efficient similarity search with `pgvector` or `timescaledb-toolkit`. |
+| **PostgreSQL + Timescale Vector** | Relational & Vector Database                   | Robust, scalable, excellent for structured data, and efficient cosine similarity search with `pgvector` or `timescaledb-toolkit`. |
 | **Langfuse**                | LLM Observability & Prompt Management          | Comprehensive tracking, monitoring, and optimization of LLM applications.            |
 | **Pandas**                  | Data manipulation & analysis                   | Powerful and flexible for handling tabular data, essential for preprocessing and post-processing. |
 | **OpenAI, Hugging Face, Groq** | Large Language Models (LLMs)                   | Access to state-of-the-art generative AI capabilities for text understanding and synthesis. |
 | **Docker & Docker Compose** | Containerization & Orchestration               | Ensures consistent development and production environments, simplifies deployment.    |
 | **PDF Extraction Library**  | Extracts text from PDF documents (Inferred)    | Enables processing of unstructured text from legal documents.                          |
 
-## ✨Prerequisites
+## ✨ Prerequisites
 
 - Docker
 - Python 3.12+
 - OpenAI API key
 - PostgreSQL GUI client
 
-## 🚀Steps
+## 🚀 Steps
 
 1. Set up Docker environment
 2. Connect to the database using a PostgreSQL GUI client (I use TablePlus)
@@ -100,7 +101,7 @@ See `insert_vectors.py` for the implementation. This script uses OpenAI's `text-
 
 See `similarity_search.py` for the implementation. This script also uses OpenAI's `text-embedding-3-small` model for query embedding.
 
-## 🔧Usage
+## 🔧 Usage
 
 1. Create a copy of `example.env` and rename it to `.env`
 2. Open `.env` and fill in your OpenAI API key. Leave the database settings as is
@@ -110,7 +111,7 @@ See `similarity_search.py` for the implementation. This script also uses OpenAI'
 6. Play with `similarity_search.py` to perform similarity searches or use app/main.py
 
 
-## Key Features
+## ✨ Key Features
 
 - **AI-Driven Analysis**: Uses openAI to generate embeddings and perform similarity searches on stored contract data.
 - **Comprehensive Reporting**: Provides a compliance score out of 100, highlights strengths and weaknesses, and explains the evaluation process.
@@ -125,14 +126,6 @@ See `similarity_search.py` for the implementation. This script also uses OpenAI'
 -   **Automated Suitability Report Generation:** Automatically produces detailed, actionable PDF reports outlining the compliance status of contracts, clearly identifying clauses and sections that require attention or indicate non-compliance.
 -   **Extensible LLM Provider Support:** Designed with an LLM factory pattern, allo
 -   **Regulatory Data Management:** Includes scripts and utilities (`for_exactlawwing seamless integration and switching between various leading LLM providers, including OpenAI, Hugging Face models, and Groq, based on performance or cost requirements..py`, `fords.py`) to prepare and manage legal and regulatory datasets for effective compliance checking.
-
-## Technology Stack
-
-- **Frontend**: FAST API keys
-- **Machine Learning**: openAI(3.5 turbo, 4o-mini) for embeddings and analysis
-- **Backend**: Dockerized PostgreSQL
-- **Similarity Search**: Cosine similarity algorithm
-- **Programming Language**: Python
 
 ## How It Works
 
