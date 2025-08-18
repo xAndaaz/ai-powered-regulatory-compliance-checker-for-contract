@@ -14,7 +14,9 @@
 - [✨ Key Features](#-key-features)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
-
+- [🤝 Contributing](#-contributing)
+- [📝 License](#-license)
+  
 ## ⭐ Overview
 
 AI Powered Regulatory Compliance Checker is an innovative open-source project designed to revolutionize regulatory compliance checking for legal contracts by leveraging advanced AI and semantic search capabilities.
@@ -173,18 +175,18 @@ Follow these steps to set up compliance checker on your local machine:
 - Wait for the analysis to complete.
 - Download the detailed compliance report.
 
-## Contribution
+## 🤝 Contributing
 
-We welcome contributions! If you'd like to contribute:
+We welcome contributions to xAndaaz AI! Whether it's bug reports, feature requests, code contributions, or documentation improvements, your help is highly valued.
 
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Commit your changes and submit a pull request.
+1.  **Fork the repository.**
+2.  **Create your feature branch:** `git checkout -b feature/AmazingFeature`
+3.  **Commit your changes:** `git commit -m 'Add some AmazingFeature'`
+4.  **Push to the branch:** `git push origin feature/AmazingFeature`
+5.  **Open a Pull Request.**
 
-## License
+Please ensure your code adheres to the project's coding standards and includes appropriate tests.
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+## 📝 License
 
-## Contact
-
-For any inquiries or feedback, please reach out at andaazmoun@gmail.com
+Distributed under the MIT License. See `LICENSE` for more information.
