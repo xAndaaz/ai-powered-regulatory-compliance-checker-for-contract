@@ -177,7 +177,7 @@ Follow these steps to set up compliance checker on your local machine:
 
 ## 🤝 Contributing
 
-We welcome contributions to xAndaaz AI! Whether it's bug reports, feature requests, code contributions, or documentation improvements, your help is highly valued.
+Contributions are welcomed to this project! Whether it's bug reports, feature requests, code contributions, or documentation improvements, your help is highly valued.
 
 1.  **Fork the repository.**
 2.  **Create your feature branch:** `git checkout -b feature/AmazingFeature`
